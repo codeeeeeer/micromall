@@ -73,7 +73,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-           </dependency>
+        </dependency>
+        <!-- 文件上传组件-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
         <!-- dubbo相关 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -98,6 +103,10 @@
             <artifactId>zkclient</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.ali</groupId>
+            <artifactId>fastdfs_client</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -22,4 +22,9 @@ public class PageController {
     public String toPage(@PathVariable("page") String page){
         return page;
     }
+
+    @RequestMapping("/rest/page/{page}")
+    public String toRestPage(@PathVariable("page") String page){
+        return page;
+    }
 }
