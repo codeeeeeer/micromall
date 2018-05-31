@@ -40,5 +40,7 @@
     <dubbo:registry protocol="zookeeper" address="192.168.25.129:2181"/>
     <dubbo:reference interface="com.micromall.service.ItemService" id="itemService" timeout="120000"/>
     <dubbo:reference interface="com.micromall.service.ItemCatService" id="itemCatService" timeout="120000"/>
+    <dubbo:reference interface="com.micromall.content.service.ContentService" id="contentService" timeout="120000"/>
+    <dubbo:reference interface="com.micromall.content.service.ContentCatService" id="contentCatService" timeout="120000"/>
 
 </beans>

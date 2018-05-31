@@ -9,6 +9,8 @@
     <modules>
         <module>micromall-common</module>
         <module>micromall-manager</module>
+        <module>micromall-portal-web</module>
+        <module>micromall-content</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -237,16 +239,12 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
             <!-- https://mvnrepository.com/artifact/com.github.tobato/fastdfs-client -->
             <dependency>
                 <groupId>com.ali</groupId>
                 <artifactId>fastdfs_client</artifactId>
                 <version>${fastdfs-client.version}</version>
             </dependency>
-
-
-
         </dependencies>
     </dependencyManagement>
 

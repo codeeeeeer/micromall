@@ -6,7 +6,7 @@ import com.micromall.commonPojo.MicromallResult;
 import com.micromall.pojo.TbItem;
 
 /**
- * 〈the service interface of item〉
+ * 〈the service service of item〉
  *
  * @author liujie
  * @create 2018/05/15 20:44
