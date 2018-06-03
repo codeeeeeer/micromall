@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
     <context:component-scan base-package="com.micromall.portal.controller" />
-    <context:property-placeholder location="classpath:FastDFS.conf"/>
+    <context:property-placeholder location="classpath:resource.properties"/>
     <mvc:annotation-driven />
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
@@ -21,23 +21,9 @@
     <mvc:resources location="/css/" mapping="/css/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
 
-    <bean class="com.micromall.commonUtils.FastDFSClient">
-        <constructor-arg name="conf" value="classpath:FastDFS.conf"/>
-    </bean>
-
-    <!-- 定义文件上传解析器 -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 设定默认编码 -->
-        <property name="defaultEncoding" value="UTF-8"></property>
-        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
-        <property name="maxUploadSize" value="5242880"></property>
-    </bean>
-
-
     <!-- 引用dubbo服务 -->
-    <dubbo:application name="micromall-manager-web"/>
+    <dubbo:application name="micromall-portal-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.25.129:2181"/>
-    <!--<dubbo:reference service="com.micromall.service.ItemService" id="itemService" timeout="120000"/>-->
+    <dubbo:reference interface="com.micromall.content.service.ContentService" id="contentService" timeout="120000"/>
 
 </beans>

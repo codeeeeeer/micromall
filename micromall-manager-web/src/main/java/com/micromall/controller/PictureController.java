@@ -36,6 +36,7 @@ public class PictureController {
         try {
             String uploadResult = fastDFSClient.uploadFile(uploadFile.getBytes(), extName);
             String url = trackerServerUrl + "/" + uploadResult;
+            log.debug(url);
             result = new PictureUploadResult(0, url);
         } catch (Exception e) {
             result = new PictureUploadResult(1, null, "图片上传失败");

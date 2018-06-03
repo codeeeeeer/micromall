@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.lh708</groupId>
-            <artifactId>micromall-manager-interface</artifactId>
+            <artifactId>micromall-content-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!-- JSP相关 -->
@@ -96,11 +96,6 @@
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ali</groupId>
-            <artifactId>fastdfs_client</artifactId>
         </dependency>
     </dependencies>
 
