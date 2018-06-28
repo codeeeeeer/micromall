@@ -3,6 +3,8 @@ package com.micromall.search.service;
 import com.micromall.commonPojo.MicromallResult;
 import com.micromall.commonPojo.SearchResult;
 
+import java.io.IOException;
+
 /**
  * 〈the interface of searching service〉
  *
@@ -12,4 +14,5 @@ import com.micromall.commonPojo.SearchResult;
 public interface SearchService{
     MicromallResult findItems();
     SearchResult findSearchIndex(String keyWord, int pageNum, int pageSize) throws Exception;
+    MicromallResult addIndexById(Long itemId) throws Exception;
 }

@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface SearchMapper {
     List<SearchItemResult> selectItems();
+    SearchItemResult getItemByIndex(Long itemId);
 }

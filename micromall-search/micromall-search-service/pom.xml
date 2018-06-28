@@ -23,6 +23,12 @@
             <artifactId>micromall-manager-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- Active MQ -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
         <!-- spring的依赖 -->
         <!-- Spring -->
         <dependency>

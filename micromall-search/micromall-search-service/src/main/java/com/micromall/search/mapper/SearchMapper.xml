@@ -9,4 +9,11 @@
           a.cid = b.id
         where a.status = 1
     </select>
+    <select id="getItemByIndex" resultType="com.micromall.commonPojo.SearchItemResult">
+        select
+          a.id, a.title, a.sell_point, a.price, a.image, b.`name` as category_name
+        from tb_item a JOIN tb_item_cat b
+        on a.cid = b.id
+        where a.status = 1 and a.id = #{itemId}
+    </select>
 </mapper>

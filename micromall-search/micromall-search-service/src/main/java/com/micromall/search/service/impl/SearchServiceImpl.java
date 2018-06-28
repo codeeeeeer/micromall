@@ -10,11 +10,13 @@ import com.micromall.search.mapper.SolrSearchDao;
 import com.micromall.search.service.SearchService;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -90,5 +92,21 @@ public class SearchServiceImpl implements SearchService {
         searchResult.setTotalPages(pages);
 
         return searchResult;
+    }
+
+    @Override
+    public MicromallResult addIndexById(Long itemId) throws Exception {
+        SearchItemResult itemByIndex = searchMapper.getItemByIndex(itemId);
+        SolrInputDocument document = new SolrInputDocument();
+        document.addField("id", itemByIndex.getId());
+        document.addField("item_title", itemByIndex.getTitle());
+        document.addField("item_sell_point", itemByIndex.getSell_point());
+        document.addField("item_price", itemByIndex.getPrice());
+        document.addField("item_image", itemByIndex.getImage());
+        document.addField("item_category_name", itemByIndex.getCategory_name());
+
+        solrServer.add(document);
+        solrServer.commit();
+        return MicromallResult.ok("商品索引添加成功！");
     }
 }

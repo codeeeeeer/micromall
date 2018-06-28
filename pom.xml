@@ -12,6 +12,8 @@
         <module>micromall-portal-web</module>
         <module>micromall-content</module>
         <module>micromall-search</module>
+        <module>micromall-item-detail</module>
+        <module>micromall-sso</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -12,9 +12,16 @@ import com.micromall.pojo.TbItem;
 import com.micromall.pojo.TbItemDesc;
 import com.micromall.pojo.TbItemExample;
 import com.micromall.service.ItemService;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +40,12 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private TbItemDescMapper itemDescMapper;
 
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Resource
+    private ActiveMQTopic itemAddTopic;
+
     @Override
     public TbItem getItemById(Long itemId) {
         TbItemExample example = new TbItemExample();
@@ -45,7 +58,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public MicromallResult addItem(TbItem item, String description) {
         Date currentDate = new Date();
-        long itemId = IDUtils.generateItemId();
+        final long itemId = IDUtils.generateItemId();
         item.setId(itemId);
         item.setCreated(currentDate);
         item.setUpdated(currentDate);
@@ -60,6 +73,16 @@ public class ItemServiceImpl implements ItemService {
 
         itemMapper.insert(item);
         itemDescMapper.insert(itemDesc);
+
+        /**
+         * 这个发送信息可以另外写一个aop切面 在事物提交以后再发送信息
+         */
+        jmsTemplate.send(itemAddTopic, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                return session.createTextMessage(String.valueOf(itemId));
+            }
+        });
         return MicromallResult.ok("商品添加成功");
     }
 
